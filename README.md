@@ -1,0 +1,1 @@
+repository created for an exercise in Software Architecture in the High Quality Software course.
