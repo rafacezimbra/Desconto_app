@@ -1,8 +1,12 @@
 from src.app.entities.desconto import DescontoNormal, DescontoPremium, DescontoVIP
 from src.app.entities.pedido import Pedido
+from src.app.gateways.pedido_gateway import IPedidoGateway
 
 
 class CriarPedido:
+    def __init__(self, pedido_gateway: IPedidoGateway) -> None:
+        self.pedido_gateway = pedido_gateway
+
     def executar(
         self, cliente: str, valor_original: float, tipo_desconto: str
     ) -> Pedido:
@@ -15,4 +19,10 @@ class CriarPedido:
         else:
             raise ValueError("Tipo de desconto inválido")
 
-        return Pedido(cliente, valor_original, desconto)
+        pedido = Pedido(cliente, valor_original, desconto)
+        self.pedido_gateway.salvar(pedido)
+
+        return pedido
+
+    def listar_pedidos(self) -> list[Pedido]:
+        return self.pedido_gateway.listar()
