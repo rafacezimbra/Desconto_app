@@ -4,19 +4,19 @@ import abc
 class IDesconto(abc.ABC):
     @abc.abstractmethod
     def calcular(self, valor: float) -> float:
-        raise NotImplementedError
+        raise NotImplementedError  # pragma: no cover
 
 
 class ICupom(abc.ABC):
     @abc.abstractmethod
     def aplicar_cupom(self, codigo: str) -> bool:
-        raise NotImplementedError
+        raise NotImplementedError  # pragma: no cover
 
 
 class IVIP(abc.ABC):
     @abc.abstractmethod
     def validar_usuario_vip(self, usuario: str) -> bool:
-        raise NotImplementedError
+        raise NotImplementedError  # pragma: no cover
 
 
 class DescontoNormal(IDesconto):
